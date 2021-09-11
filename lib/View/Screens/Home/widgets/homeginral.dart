@@ -4,24 +4,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../constants/normalColors.dart';
 
 // ignore: must_be_immutable
-class HomePageBottomNavBar extends StatefulWidget {
+class HomePageBottomNavBar extends StatelessWidget {
   HomePageBottomNavBar({
     required this.currentIndex,
     Key? key,
+    required this.onTap,
   }) : super(key: key);
 
-  int? currentIndex;
+  late final int? currentIndex;
+  final void Function(int)? onTap;
 
-  @override
-  _HomePageBottomNavBarState createState() => _HomePageBottomNavBarState();
-}
-
-class _HomePageBottomNavBarState extends State<HomePageBottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       elevation: 20,
-      currentIndex: widget.currentIndex ?? 0,
+      currentIndex: currentIndex ?? 0,
       items: [
         BottomNavigationBarItem(
           label: "",
@@ -61,11 +58,7 @@ class _HomePageBottomNavBarState extends State<HomePageBottomNavBar> {
           ),
         ),
       ],
-      onTap: (x) {
-        setState(() {
-          widget.currentIndex = x;
-        });
-      },
+      onTap: onTap,
       selectedItemColor: black,
       showSelectedLabels: true,
       backgroundColor: white,

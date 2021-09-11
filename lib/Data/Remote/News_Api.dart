@@ -1,14 +1,33 @@
 import 'package:dio/dio.dart';
-import 'package:news_app/Data/entitiesModel/Res_NewsModel.dart';
-import 'package:news_app/constants/kays.dart';
+
+import '../../constants/Api_info.dart';
+import '../../constants/kays.dart';
+import '../entitiesModel/Res_NewsModel.dart';
 
 class NewsApi {
-  Dio _dio = Dio();
-  Future<ResponseNewsModel> init() async {
-    final endPoint =
-        "https://newsapi.org/v2/everything?q=tesla&from=2021-08-09&sortBy=publishedAt&apiKey=$apiKey";
-    final response = await _dio.get(endPoint);
+  Dio dio = Dio();
 
-    return ResponseNewsModel.fromJson(response.data as Map<String,dynamic>);
+  void init() async {
+    dio = Dio(
+      BaseOptions(
+        baseUrl: ApiInfo.baseUrl,
+        receiveDataWhenStatusError: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      ),
+    );
+  }
+
+  Future<ResponseNewsModel> loadFromApi() async {
+    final endPoint = "${ApiInfo.topHeadlines}";
+    final response = await dio.get(
+      endPoint,
+      queryParameters: {
+        "apiKey": "$apiKey",
+        "country": "eg",
+      },
+    );
+    return ResponseNewsModel.fromJson(response.data as Map<String, dynamic>);
   }
 }

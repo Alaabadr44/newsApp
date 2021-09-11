@@ -1,14 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'View/Screens/SplashScreen/SplashScreen.dart';
+import 'ViewModel/cubit/news_cubit.dart';
+import 'helper/blocop.dart';
 import 'helper/function.dart';
+import 'repositories/news_repository.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
   // this for hide status bar icon on the top
   hideStatusBar();
-  runApp(MyApp());
+  runApp(
+    RepositoryProvider(
+      create: (context) => NewsRepository(),
+      child: BlocProvider(
+        create: (context) => NewsCubit(
+          RepositoryProvider.of<NewsRepository>(context),
+        )..load(),
+        child: MyApp(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

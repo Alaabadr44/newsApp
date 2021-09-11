@@ -1,28 +1,75 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app/View/Screens/Home/Saved_Screen/Saved_screen.dart';
+import 'package:news_app/View/Screens/SearchScreen/SearchScreen.dart';
 
+import '../../../ViewModel/cubit/news_cubit.dart';
 import '../../../constants/normalColors.dart';
 import '../../widgets/loadingwidgets.dart';
+import 'HomeForHomeScreen/HomeForHomeScreen.dart';
 import 'widgets/homeginral.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int currentIndex = 0;
+  void changeCurrentIndex(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
+  List<Widget> screens = [
+    FirstNavOption(),
+    SearchScreen(),
+    SavedScreen(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: white,
-        // body: SearchScreen(),
-        // body: HomePageScreenBody(),
-        // body: HomePageLoading(),
-        body: HomePageError(),
+        body: screens[currentIndex],
         bottomNavigationBar: HomePageBottomNavBar(
-          currentIndex: 0,
+          currentIndex: currentIndex,
+          onTap: changeCurrentIndex,
         ),
       ),
+    );
+  }
+}
+
+class FirstNavOption extends StatelessWidget {
+  const FirstNavOption({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<NewsCubit, NewsState>(
+      builder: (context, state) {
+        NewsCubit cubit = BlocProvider.of<NewsCubit>(context);
+        if (cubit.news.isEmpty) {
+          return HomePageLoading();
+        } else if (state is ErorrLoadingNews) {
+          return HomePageError(error: state.massage);
+        } else if (cubit.news.isNotEmpty) {
+          return HomePageScreenBody(
+            newsUi: cubit.news,
+            // cubit: cubit,
+          );
+        } else {
+          return Container();
+        }
+      },
     );
   }
 }
@@ -38,8 +85,7 @@ class HomePageLoading extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-
-        // banars widget with shimmer 
+        // banars widget with shimmer
         Stack(
           children: [
             ShimmerWidget(
@@ -92,14 +138,10 @@ class HomePageLoading extends StatelessWidget {
             )
           ],
         ),
-       //
-       
-       
-       
-       
+        //
+
         SizedBox(height: 120.h),
-      
-      
+
         Expanded(
           child: ListView.separated(
             physics: BouncingScrollPhysics(),
@@ -158,27 +200,9 @@ class HomePageLoading extends StatelessWidget {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class HomePageError extends StatelessWidget {
-  const HomePageError({Key? key}) : super(key: key);
+  final String error;
+  const HomePageError({Key? key, required this.error}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -204,7 +228,7 @@ class HomePageError extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  "هناك خطأ",
+                  error,
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontSize: 36.sp,
                         fontWeight: FontWeight.normal,

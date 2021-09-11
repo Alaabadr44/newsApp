@@ -26,25 +26,21 @@ class HomePageHeadBanaras extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 230.h,
-              ),
+              SizedBox(height: 230.h),
               Text(
-                (newHead ??
-                    "تنسيق الجامعات الخاصة هل تنخفض الحدود الدنيا في المرحلة الثانية | مصراوى"),
+                newHead!,
                 style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                    color: white,
-                    fontSize: 45.sp,
-                    fontWeight: FontWeight.w800,
-                    height: 1.3),
+                      color: white,
+                      fontSize: 45.sp,
+                      fontWeight: FontWeight.w800,
+                      height: 1.3,
+                    ),
                 // textDirection: TextDirection.rtl,
                 maxLines: 3,
                 textScaleFactor: 1.3,
                 overflow: TextOverflow.ellipsis,
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10.h),
               TextButton(
                 onPressed: otherPress,
                 child: Text(
@@ -55,8 +51,6 @@ class HomePageHeadBanaras extends StatelessWidget {
                         fontWeight: FontWeight.w800,
                         height: 1.2,
                       ),
-                  maxLines: 3,
-                  textScaleFactor: 1,
                 ),
               ),
             ],
@@ -66,7 +60,6 @@ class HomePageHeadBanaras extends StatelessWidget {
     );
   }
 }
-
 
 class HomePageNewItem extends StatelessWidget {
   const HomePageNewItem({
