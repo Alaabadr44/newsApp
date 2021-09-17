@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../ViewModel/cubit/news_cubit.dart';
 import '../../../constants/normalColors.dart';
+import '../../../view_model/cubit/news_cubit.dart';
 import '../../widgets/loadingwidgets.dart';
 import '../search_screen/search_screen.dart';
 import 'Home_For_Home_Screen/HomeForHomeScreen.dart';

@@ -4,10 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'View/Screens/SplashScreen/SplashScreen.dart';
-import 'ViewModel/cubit/news_cubit.dart';
 import 'helper/blocop.dart';
 import 'helper/function.dart';
 import 'repositories/news_repository.dart';
+import 'view_model/cubit/news_cubit.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
