@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app/constants/values.dart';
 
-import '../../../../constants/normalColors.dart';
+import '../../../../../constants/normalColors.dart';
 
 class HomePageHeadBanaras extends StatelessWidget {
   const HomePageHeadBanaras({
@@ -30,7 +31,7 @@ class HomePageHeadBanaras extends StatelessWidget {
               Text(
                 newHead!,
                 style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                      color: white,
+                      color: imageSrc == noImgModePhoto ? black : white,
                       fontSize: 45.sp,
                       fontWeight: FontWeight.w800,
                       height: 1.3,

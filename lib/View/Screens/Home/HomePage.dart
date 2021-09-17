@@ -8,7 +8,7 @@ import 'package:news_app/View/Screens/SearchScreen/SearchScreen.dart';
 import '../../../ViewModel/cubit/news_cubit.dart';
 import '../../../constants/normalColors.dart';
 import '../../widgets/loadingwidgets.dart';
-import 'HomeForHomeScreen/HomeForHomeScreen.dart';
+import 'Home_For_Home_Screen/HomeForHomeScreen.dart';
 import 'widgets/homeginral.dart';
 
 class HomePage extends StatefulWidget {

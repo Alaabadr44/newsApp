@@ -14,7 +14,7 @@ void hideStatusBar() {
       // systemNavigationBarIconBrightness: Brightness.light,
     ),
   );
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky, overlays: []);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 }
 
 void simpleGoTo(
