@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news_app/View/Screens/Home/Saved_Screen/Saved_screen.dart';
-import 'package:news_app/View/Screens/SearchScreen/SearchScreen.dart';
 
 import '../../../ViewModel/cubit/news_cubit.dart';
 import '../../../constants/normalColors.dart';
 import '../../widgets/loadingwidgets.dart';
+import '../search_screen/search_screen.dart';
 import 'Home_For_Home_Screen/HomeForHomeScreen.dart';
-import 'widgets/homeginral.dart';
+import 'Saved_Screen/Saved_screen.dart';
+import 'widgets/home_ginral.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

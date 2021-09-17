@@ -1,7 +1,7 @@
 import 'package:news_app/constants/values.dart';
 
 import '../Data/Remote/News_Api.dart';
-import '../Model/News_Model.dart';
+import '../Model/news_model.dart';
 
 class NewsRepository {
   final newsApi = NewsApi();

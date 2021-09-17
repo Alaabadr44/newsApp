@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../constants/images.dart';
 import '../../../constants/normalColors.dart';
 import '../../../helper/function.dart';
-import '../Home/HomePage.dart';
+import '../Home/home_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({

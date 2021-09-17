@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:news_app/Data/entities_Model/Res_NewsModel.dart';
 
-import '../../constants/Api_info.dart';
+import '../../constants/api_info.dart';
 import '../../constants/kays.dart';
+import '../entities_Model/Res_NewsModel.dart';
 
 class NewsApi {
   Dio dio = Dio();
